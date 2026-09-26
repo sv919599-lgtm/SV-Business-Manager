@@ -4,6 +4,8 @@
   <title>SV Business Manager</title>
   <link rel="icon" type="image/png" href="icon.png">
   <link rel="stylesheet" href="./style.css">
+  <link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#000000">
 </head>
 <body>
   <header class="topbar">
@@ -38,5 +40,18 @@
   </main>
 
   <script src="./script.js"></script>
+  <script>
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", function() {
+    navigator.serviceWorker.register("sw.js")
+      .then(function() {
+        console.log("SV Business Manager ready");
+      })
+      .catch(function(error) {
+        console.log("Service Worker error:", error);
+      });
+  });
+}
+  </script>
 </body>
 </html>
