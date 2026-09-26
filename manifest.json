@@ -1,0 +1,17 @@
+{
+  "name": "SV Business Manager",
+  "short_name": "SV Business",
+  "start_url": "/SV-Business-Manager/",
+  "scope": "/SV-Business-Manager/",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#000000",
+  "description": "Manage your business, products, sales, expenses and reports.",
+  "icons": [
+    {
+      "src": "icon.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
