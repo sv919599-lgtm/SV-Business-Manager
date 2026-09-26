@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>SV Business Manager</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="app-logo"><span>SV</span></div>
+    <div class="app-title">
+      <h1>SV Business Manager</h1>
+      <p>Manage Your Business</p>
+    </div>
+  </header>
+
+  <main id="app" class="dashboard">
+    <div class="summary-card">
+      <h2>📊 Business Summary</h2>
+      <div class="summary-item"><span>💰 Total Sales</span><strong id="dashboardSales">₹0</strong></div>
+      <div class="summary-item"><span>💸 Total Expenses</span><strong id="dashboardExpenses">₹0</strong></div>
+      <div class="summary-item"><span>📦 Items Sold</span><strong id="dashboardItems">0</strong></div>
+      <div class="summary-item"><span>📈 Net Profit</span><strong id="dashboardProfit">₹0</strong></div>
+    </div>
+
+    <div class="card" onclick="openSection('Products')">
+      <h2>📦 Products</h2><p>Manage your products</p>
+    </div>
+    <div class="card" onclick="openSection('Sales')">
+      <h2>🛒 Sales</h2><p>Manage your sales</p>
+    </div>
+    <div class="card" onclick="showExpenses()">
+      <h2>💰 Expenses</h2><p>Track your expenses</p>
+    </div>
+    <div class="card" onclick="showReports()">
+      <h2>📊 Reports</h2><p>View business reports</p>
+    </div>
+  </main>
+
+  <script src="./script.js"></script>
+</body>
+</html>

@@ -1,0 +1,120 @@
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #0b0b0b;
+  color: #ffffff;
+}
+
+.topbar {
+  background: #0b0b0b;
+  border-bottom: 2px solid #d4af37;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 18px;
+}
+
+.app-logo {
+  width: 58px;
+  height: 58px;
+  border: 2px solid #d4af37;
+  border-radius: 50%;
+  background: #000000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 15px rgba(212,175,55,.35);
+  flex-shrink: 0;
+}
+
+.app-logo span {
+  color: #d4af37;
+  font-size: 24px;
+  font-weight: 800;
+  letter-spacing: -2px;
+}
+
+.app-title h1 { margin: 0; color: #d4af37; font-size: 22px; }
+.app-title p { margin: 5px 0 0; color: #cccccc; font-size: 13px; }
+
+.dashboard {
+  padding: 20px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+}
+
+.card {
+  background: linear-gradient(145deg,#191919,#101010);
+  border: 1px solid #333333;
+  border-left: 5px solid #d4af37;
+  border-radius: 16px;
+  padding: 16px;
+  box-shadow: 0 0 10px rgba(212,175,55,.18);
+  transition: .2s;
+}
+
+.dashboard > .card {
+  min-height: 110px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.card h2 { margin: 0 0 8px; color: #d4af37; font-size: 18px; }
+.card p { margin: 0; color: #bdbdbd; font-size: 13px; }
+
+.dashboard .card:active {
+  transform: scale(.96);
+  box-shadow: 0 0 22px rgba(212,175,55,.5);
+}
+
+.summary-card {
+  grid-column: 1 / -1;
+  background: #151515;
+  border: 1px solid #3a3a3a;
+  border-left: 5px solid #d4af37;
+  border-radius: 16px;
+  padding: 18px;
+  box-shadow: 0 0 12px rgba(212,175,55,.25);
+}
+
+.summary-card h2 { color: #d4af37; margin: 0 0 15px; font-size: 20px; }
+
+.summary-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid #333333;
+}
+
+.summary-item:last-child { border-bottom: none; }
+.summary-item span { color: #cccccc; font-size: 14px; }
+.summary-item strong { color: #d4af37; font-size: 16px; }
+
+input, select {
+  width: 100%;
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid #555;
+  background: #111;
+  color: #fff;
+}
+
+button {
+  padding: 12px 16px;
+  border: 0;
+  border-radius: 10px;
+  background: #d4af37;
+  color: #000;
+  font-weight: 700;
+}
+
+@media (max-width: 600px) {
+  .dashboard { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .dashboard > .card { min-height: 110px; }
+  .card h2 { font-size: 15px; }
+}
