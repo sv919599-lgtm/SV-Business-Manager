@@ -12,14 +12,22 @@ window.openSection = function(section) {
   if (section === "Settings") window.showSettings();
 };
 window.showSettings = function() {
-  document.getElementById("app").innerHTML = `
-    <div class="card">
-      <h2>⚙️ Settings</h2>
+  document.body.innerHTML = `
+    <div class="topbar">
+      <h1>⚙️ Settings</h1>
       <p>Manage app settings</p>
+    </div>
 
-      <button onclick="goHome()">
-        ← Back to Dashboard
-      </button>
+    <div class="dashboard">
+      <div class="card">
+        <h2>⚙️ App Settings</h2>
+        <p>SV Business Manager settings</p>
+      </div>
+
+      <div class="card" onclick="goHome()">
+        <h2>← Back</h2>
+        <p>Back to dashboard</p>
+      </div>
     </div>
   `;
 };
