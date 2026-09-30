@@ -12,24 +12,76 @@ window.openSection = function(section) {
   if (section === "Settings") window.showSettings();
 };
 window.showSettings = function() {
+  const profile = JSON.parse(
+    localStorage.getItem("svBusinessProfile") || "{}"
+  );
+
   document.body.innerHTML = `
     <div class="topbar">
       <h1>⚙️ Settings</h1>
-      <p>Manage app settings</p>
+      <p>Manage your business settings</p>
     </div>
 
     <div class="dashboard">
+
       <div class="card">
-        <h2>⚙️ App Settings</h2>
-        <p>SV Business Manager settings</p>
+        <h2>🏢 Business Profile</h2>
+
+        <label>Business Name</label>
+        <input
+          type="text"
+          id="businessName"
+          value="${profile.name || ""}"
+          placeholder="Enter business name"
+        >
+
+        <br><br>
+
+        <label>Mobile Number</label>
+        <input
+          type="tel"
+          id="businessMobile"
+          value="${profile.mobile || ""}"
+          placeholder="Enter mobile number"
+        >
+
+        <br><br>
+
+        <label>Address</label>
+        <textarea
+          id="businessAddress"
+          placeholder="Enter business address"
+        >${profile.address || ""}</textarea>
+
+        <br><br>
+
+        <button onclick="saveBusinessProfile()">
+          💾 Save Profile
+        </button>
       </div>
 
       <div class="card" onclick="goHome()">
         <h2>← Back</h2>
         <p>Back to dashboard</p>
       </div>
+
     </div>
   `;
+};
+
+window.saveBusinessProfile = function() {
+  const profile = {
+    name: document.getElementById("businessName").value.trim(),
+    mobile: document.getElementById("businessMobile").value.trim(),
+    address: document.getElementById("businessAddress").value.trim()
+  };
+
+  localStorage.setItem(
+    "svBusinessProfile",
+    JSON.stringify(profile)
+  );
+
+  alert("Business Profile Saved Successfully ✅");
 };
 window.showProducts = function() {
   products = JSON.parse(localStorage.getItem("svProducts") || "[]");
