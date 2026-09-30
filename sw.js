@@ -1,4 +1,4 @@
-const CACHE_NAME = "sv-business-manager-v1";
+const CACHE_NAME = "sv-business-manager-v2";
 
 const FILES_TO_CACHE = [
   "/SV-Business-Manager/",
