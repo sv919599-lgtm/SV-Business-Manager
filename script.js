@@ -9,8 +9,20 @@ window.openSection = function(section) {
   if (section === "Sales") window.showSales();
   if (section === "Expenses") window.showExpenses();
   if (section === "Reports") window.showReports();
+  if (section === "Settings") window.showSettings();
 };
+window.showSettings = function() {
+  document.getElementById("app").innerHTML = `
+    <div class="card">
+      <h2>⚙️ Settings</h2>
+      <p>Manage app settings</p>
 
+      <button onclick="goHome()">
+        ← Back to Dashboard
+      </button>
+    </div>
+  `;
+};
 window.showProducts = function() {
   products = JSON.parse(localStorage.getItem("svProducts") || "[]");
   let list = "";
