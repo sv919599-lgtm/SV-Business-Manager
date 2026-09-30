@@ -1,57 +1,87 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SV Business Manager</title>
-  <link rel="icon" type="image/png" href="icon.png">
   <link rel="stylesheet" href="./style.css">
-  <link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#000000">
 </head>
+
 <body>
+
   <header class="topbar">
-    <div class="app-logo"><span>SV</span></div>
-    <div class="app-title">
-      <h1>SV Business Manager</h1>
-      <p>Manage Your Business</p>
-    </div>
+
+  <div class="app-logo">
+    <span>SV</span>
+  </div>
+
+  <div class="app-title">
+    <h1>SV Business Manager</h1>
+    <p>Manage Your Business</p>
+  </div>
+
   </header>
 
-  <main id="app" class="dashboard">
-    <div class="summary-card">
-      <h2>📊 Business Summary</h2>
-      <div class="summary-item"><span>💰 Total Sales</span><strong id="dashboardSales">₹0</strong></div>
-      <div class="summary-item"><span>💸 Total Expenses</span><strong id="dashboardExpenses">₹0</strong></div>
-      <div class="summary-item"><span>📦 Items Sold</span><strong id="dashboardItems">0</strong></div>
-      <div class="summary-item"><span>📈 Net Profit</span><strong id="dashboardProfit">₹0</strong></div>
+  <main id="app"class=" dashboard">
+<div class="summary-card">
+
+  <h2>📊 Business Summary</h2>
+
+  <div class="summary-item"onclick="showSales()">
+    <span>💰 Total Sales</span>
+    <strong id="dashboardSales">₹0</strong>
+  </div>
+
+  <div class="summary-item" onclick="showExpenses()">
+    <span>💸 Total Expenses</span>
+    <strong id="dashboardExpenses">₹0</strong>
+  </div>
+
+  <div class="summary-item" onclick="showSales()">
+    <span>📦 Items Sold</span>
+    <strong id="dashboardItems">0</strong>
+  </div>
+
+  <div class="summary-item" onclick="showReports()">
+    <span>📈 Net Profit</span>
+    <strong id="dashboardProfit">₹0</strong>
+  </div>
+
+</div>
+    <div class="card" onclick="openSection('Products')">
+      <h2>📦 Products</h2>
+      <p>Manage your products</p>
     </div>
 
-    <div class="card" onclick="openSection('Products')">
-      <h2>📦 Products</h2><p>Manage your products</p>
-    </div>
     <div class="card" onclick="openSection('Sales')">
-      <h2>🛒 Sales</h2><p>Manage your sales</p>
+      <h2>🛒 Sales</h2>
+      <p>Manage your sales</p>
     </div>
-    <div class="card" onclick="showExpenses()">
-      <h2>💰 Expenses</h2><p>Track your expenses</p>
+
+    <div class="card"onclick="showExpenses()">
+<h2>💰 Expenses</h2>
+      <p>Track your expenses</p>
     </div>
-    <div class="card" onclick="showReports()">
-      <h2>📊 Reports</h2><p>View business reports</p>
+
+    <div class="card"onclick="showReports()">
+      <h2>📊 Reports</h2>
+      <p>View business reports</p>
     </div>
+<div class="card" onclick="openSection('Settings')"> 
+  <h2>💰 Expenses</h2>
+      <p>Track your expenses</p>
+    </div>
+
+    <div class="card"onclick="showReports()">
+      <h2>📊 Reports</h2>
+      <p>View business reports</p>
+    </div>
+<div class="card" onclick="openSection('Settings')"> 
+  <h2>⚙️ Settings</h2>
+  <p>Manage app settings</p>
+</div>
   </main>
 
   <script src="./script.js"></script>
-  <script>
-if ("serviceWorker" in navigator) {
-  window.addEventListener("load", function() {
-    navigator.serviceWorker.register("sw.js")
-      .then(function() {
-        console.log("SV Business Manager ready");
-      })
-      .catch(function(error) {
-        console.log("Service Worker error:", error);
-      });
-  });
-}
-  </script>
+
 </body>
 </html>
