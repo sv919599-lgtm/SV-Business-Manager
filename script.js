@@ -67,7 +67,10 @@ window.showSettings = function() {
           💾 Save Profile
         </button>
       </div>
-
+      <div class="card" onclick="showAppSettings()">
+        <h2>⚙️ App Settings</h2>
+        <p>Manage app preferences</p>
+      </div>
       <div class="card" onclick="goHome()">
         <h2>← Back</h2>
         <p>Back to dashboard</p>
