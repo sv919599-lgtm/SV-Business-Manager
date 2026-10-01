@@ -52,25 +52,19 @@ window.showSettings = function() {
           id="businessAddress"
           placeholder="Enter business address"
         >${profile.address || ""}</textarea>
-<label>Business Type</label>
-<input
-  type="text"
-  id="businessType"
-  value="${profile.type || ""}"
-  placeholder="e.g. Grocery, Vegetables, Online Service"
->
 
-<br><br>
         <br><br>
 
         <button onclick="saveBusinessProfile()">
           💾 Save Profile
         </button>
       </div>
+
       <div class="card" onclick="showAppSettings()">
         <h2>⚙️ App Settings</h2>
         <p>Manage app preferences</p>
       </div>
+
       <div class="card" onclick="goHome()">
         <h2>← Back</h2>
         <p>Back to dashboard</p>
@@ -79,6 +73,24 @@ window.showSettings = function() {
     </div>
   `;
 };
+
+
+window.saveBusinessProfile = function() {
+  const profile = {
+    name: document.getElementById("businessName").value.trim(),
+    mobile: document.getElementById("businessMobile").value.trim(),
+    address: document.getElementById("businessAddress").value.trim()
+  };
+
+  localStorage.setItem(
+    "svBusinessProfile",
+    JSON.stringify(profile)
+  );
+
+  alert("Business Profile Saved Successfully ✅");
+};
+
+
 window.showAppSettings = function() {
   document.body.innerHTML = `
     <div class="topbar">
