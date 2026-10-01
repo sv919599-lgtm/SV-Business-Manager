@@ -386,3 +386,106 @@ function updateDashboard() {
 }
 
 updateDashboard();
+window.showSettings = function() {
+  const profile = JSON.parse(
+    localStorage.getItem("svBusinessProfile") || "{}"
+  );
+
+  document.body.innerHTML = `
+    <div class="topbar">
+      <h1>⚙️ Settings</h1>
+      <p>Manage your business settings</p>
+    </div>
+
+    <div class="dashboard">
+
+      <div class="card">
+        <h2>🏢 Business Profile</h2>
+
+        <label>Business Name</label>
+        <input
+          type="text"
+          id="businessName"
+          value="${profile.name || ""}"
+          placeholder="Enter business name"
+        >
+
+        <br><br>
+
+        <label>Mobile Number</label>
+        <input
+          type="tel"
+          id="businessMobile"
+          value="${profile.mobile || ""}"
+          placeholder="Enter mobile number"
+        >
+
+        <br><br>
+
+        <label>Address</label>
+        <textarea
+          id="businessAddress"
+          placeholder="Enter business address"
+        >${profile.address || ""}</textarea>
+
+        <br><br>
+
+        <button onclick="saveBusinessProfile()">
+          💾 Save Profile
+        </button>
+      </div>
+
+      <div class="card" onclick="showAppSettings()">
+        <h2>⚙️ App Settings</h2>
+        <p>Manage app preferences</p>
+      </div>
+
+      <div class="card" onclick="goHome()">
+        <h2>← Back</h2>
+        <p>Back to dashboard</p>
+      </div>
+
+    </div>
+  `;
+};
+
+
+window.saveBusinessProfile = function() {
+  const profile = {
+    name: document.getElementById("businessName").value.trim(),
+    mobile: document.getElementById("businessMobile").value.trim(),
+    address: document.getElementById("businessAddress").value.trim()
+  };
+
+  localStorage.setItem(
+    "svBusinessProfile",
+    JSON.stringify(profile)
+  );
+
+  alert("Business Profile Saved Successfully ✅");
+};
+
+
+window.showAppSettings = function() {
+  document.body.innerHTML = `
+    <div class="topbar">
+      <h1>⚙️ App Settings</h1>
+      <p>Manage your app preferences</p>
+    </div>
+
+    <div class="dashboard">
+
+      <div class="card">
+        <h2>📱 App Information</h2>
+        <p>SV Business Manager</p>
+        <p>Version 1.0</p>
+      </div>
+
+      <div class="card" onclick="showSettings()">
+        <h2>← Back</h2>
+        <p>Back to Settings</p>
+      </div>
+
+    </div>
+  `;
+};
