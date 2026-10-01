@@ -135,7 +135,7 @@ window.saveBusinessProfile = function() {
 // ================================
 
 window.showAppSettings = function() {
-
+alert("App Settings clicked");
   document.body.innerHTML = `
 
     <div class="topbar">
