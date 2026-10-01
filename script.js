@@ -76,7 +76,29 @@ window.showSettings = function() {
     </div>
   `;
 };
+window.showAppSettings = function() {
+  document.body.innerHTML = `
+    <div class="topbar">
+      <h1>⚙️ App Settings</h1>
+      <p>Manage your app preferences</p>
+    </div>
 
+    <div class="dashboard">
+
+      <div class="card">
+        <h2>📱 App Information</h2>
+        <p>SV Business Manager</p>
+        <p>Version 1.0</p>
+      </div>
+
+      <div class="card" onclick="showSettings()">
+        <h2>← Back</h2>
+        <p>Back to Settings</p>
+      </div>
+
+    </div>
+  `;
+};
 window.saveBusinessProfile = function() {
   const profile = {
     name: document.getElementById("businessName").value.trim(),
