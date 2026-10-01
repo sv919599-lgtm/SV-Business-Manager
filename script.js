@@ -52,7 +52,15 @@ window.showSettings = function() {
           id="businessAddress"
           placeholder="Enter business address"
         >${profile.address || ""}</textarea>
+<label>Business Type</label>
+<input
+  type="text"
+  id="businessType"
+  value="${profile.type || ""}"
+  placeholder="e.g. Grocery, Vegetables, Online Service"
+>
 
+<br><br>
         <br><br>
 
         <button onclick="saveBusinessProfile()">
@@ -73,7 +81,8 @@ window.saveBusinessProfile = function() {
   const profile = {
     name: document.getElementById("businessName").value.trim(),
     mobile: document.getElementById("businessMobile").value.trim(),
-    address: document.getElementById("businessAddress").value.trim()
+   address: document.getElementById("businessAddress").value.trim(),
+type: document.getElementById("businessType").value.trim() 
   };
 
   localStorage.setItem(
