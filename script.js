@@ -39,6 +39,7 @@ window.showSettings = function() {
 
     <div class="dashboard">
 
+      <!-- BUSINESS PROFILE -->
       <div class="card">
 
         <h2>🏢 Business Profile</h2>
@@ -81,6 +82,7 @@ window.showSettings = function() {
       </div>
 
 
+      <!-- APP SETTINGS -->
       <div class="card" onclick="showAppSettings()">
 
         <h2>⚙️ App Settings</h2>
@@ -90,6 +92,45 @@ window.showSettings = function() {
       </div>
 
 
+      <!-- BACKUP -->
+      <div class="card" onclick="backupData()">
+
+        <h2>💾 Backup Data</h2>
+
+        <p>Save your business data safely</p>
+
+      </div>
+
+
+      <!-- RESTORE -->
+      <div class="card" onclick="document.getElementById('restoreFile').click()">
+
+        <h2>♻️ Restore Data</h2>
+
+        <p>Restore your saved business data</p>
+
+        <input
+          type="file"
+          id="restoreFile"
+          accept=".json"
+          style="display:none"
+          onchange="restoreData(event)"
+        >
+
+      </div>
+
+
+      <!-- DATA SUMMARY -->
+      <div class="card" onclick="showDataSummary()">
+
+        <h2>📊 Data Summary</h2>
+
+        <p>View your stored business data</p>
+
+      </div>
+
+
+      <!-- BACK -->
       <div class="card" onclick="goHome()">
 
         <h2>← Back</h2>
@@ -101,6 +142,217 @@ window.showSettings = function() {
     </div>
 
   `;
+};
+
+
+// ================================
+// SAVE BUSINESS PROFILE
+// ================================
+
+window.saveBusinessProfile = function() {
+
+  const profile = {
+    name: document.getElementById("businessName").value,
+    mobile: document.getElementById("businessMobile").value,
+    address: document.getElementById("businessAddress").value
+  };
+
+  localStorage.setItem(
+    "svBusinessProfile",
+    JSON.stringify(profile)
+  );
+
+  alert("✅ Business Profile Saved");
+
+};
+
+
+// ================================
+// BACKUP DATA
+// ================================
+
+window.backupData = function() {
+
+  const backup = {};
+
+  for (let i = 0; i < localStorage.length; i++) {
+
+    const key = localStorage.key(i);
+
+    backup[key] = localStorage.getItem(key);
+
+  }
+
+  const data = JSON.stringify(backup, null, 2);
+
+  const blob = new Blob(
+    [data],
+    { type: "application/json" }
+  );
+
+  const url = URL.createObjectURL(blob);
+
+  const a = document.createElement("a");
+
+  a.href = url;
+
+  a.download = "SV-Business-Manager-Backup.json";
+
+  a.click();
+
+  URL.revokeObjectURL(url);
+
+  alert("✅ Backup file created");
+};
+
+
+// ================================
+// RESTORE DATA
+// ================================
+
+window.restoreData = function(event) {
+
+  const file = event.target.files[0];
+
+  if (!file) return;
+
+  const reader = new FileReader();
+
+  reader.onload = function(e) {
+
+    try {
+
+      const backup = JSON.parse(e.target.result);
+
+      Object.keys(backup).forEach(key => {
+
+        localStorage.setItem(
+          key,
+          backup[key]
+        );
+
+      });
+
+      alert("✅ Data Restored Successfully");
+
+      location.reload();
+
+    } catch (error) {
+
+      alert("❌ Invalid backup file");
+
+    }
+
+  };
+
+  reader.readAsText(file);
+
+};
+
+
+// ================================
+// DATA SUMMARY
+// ================================
+
+window.showDataSummary = function() {
+
+  const products = JSON.parse(
+    localStorage.getItem("svProducts") || "[]"
+  );
+
+  const sales = JSON.parse(
+    localStorage.getItem("svSales") || "[]"
+  );
+
+  const expenses = JSON.parse(
+    localStorage.getItem("svExpenses") || "[]"
+  );
+
+  let totalSales = 0;
+  let totalExpenses = 0;
+
+  sales.forEach(sale => {
+
+    totalSales += Number(
+      sale.totalAmount || 0
+    );
+
+  });
+
+  expenses.forEach(expense => {
+
+    totalExpenses += Number(
+      expense.amount || 0
+    );
+
+  });
+
+  const profit = totalSales - totalExpenses;
+
+  document.body.innerHTML = `
+
+    <div class="topbar">
+
+      <h1>📊 Data Summary</h1>
+
+      <p>Your business data overview</p>
+
+    </div>
+
+    <div class="dashboard">
+
+      <div class="card">
+
+        <h2>📦 Products</h2>
+
+        <h2>${products.length}</h2>
+
+      </div>
+
+      <div class="card">
+
+        <h2>💰 Sales</h2>
+
+        <h2>${sales.length}</h2>
+
+      </div>
+
+      <div class="card">
+
+        <h2>💵 Total Sales</h2>
+
+        <h2>₹${totalSales}</h2>
+
+      </div>
+
+      <div class="card">
+
+        <h2>💸 Total Expenses</h2>
+
+        <h2>₹${totalExpenses}</h2>
+
+      </div>
+
+      <div class="card">
+
+        <h2>📈 Profit</h2>
+
+        <h2>₹${profit}</h2>
+
+      </div>
+
+      <div class="card" onclick="showSettings()">
+
+        <h2>← Back</h2>
+
+        <p>Back to Settings</p>
+
+      </div>
+
+    </div>
+
+  `;
+
 };
 
 
